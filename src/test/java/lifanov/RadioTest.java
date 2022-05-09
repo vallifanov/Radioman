@@ -93,11 +93,11 @@ public class RadioTest {
     @Test
     public void testUpOverLimitVolume() {
         Radio rad = new Radio();
-        rad.setCurrentVolume(10);
+        rad.setCurrentVolume(100);
 
         rad.upVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = rad.getCurrentVolume();
 
         assertEquals(expected, actual);
@@ -139,6 +139,22 @@ public class RadioTest {
         int expected = 6;
         int actual = rad.getCurrentVolume();
 
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void testLimitStation() {
+        Radio rad = new Radio(25);
+        rad.setCurrentStation(19);
+        int expected = 19;
+        int actual = rad.getCurrentStation();
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void testOverMaxLimitStation() {
+        Radio rad = new Radio(30);
+        rad.setCurrentStation(31);
+        int expected = 0;
+        int actual = rad.getCurrentStation();
         assertEquals(expected, actual);
     }
 }

@@ -1,10 +1,17 @@
 package lifanov;
 
 public class Radio {
+    private int numberOfStation;
     private int currentStation;
 
     private int currentVolume;
 
+    public Radio(int numberOfStation) {
+        this.numberOfStation = numberOfStation;
+    }
+    public Radio () {
+        numberOfStation = 10;
+    }
     public int getCurrentStation() {
 
         return currentStation;
@@ -24,7 +31,7 @@ public class Radio {
         if (currentStation < 0) {
             return;
         }
-        if (currentStation > 9) {
+        if (currentStation >= numberOfStation) {
             return;
         }
         this.currentStation = currentStation;
@@ -32,7 +39,7 @@ public class Radio {
 
     public void nextStation() {
 
-        if (currentStation > 8) {
+        if (currentStation >= numberOfStation - 1) {
             currentStation = 0;
             return;
         }
@@ -42,7 +49,7 @@ public class Radio {
     public void prevStation() {
 
         if (currentStation < 1) {
-            currentStation = 9;
+            currentStation = numberOfStation - 1;
             return;
         }
         this.currentStation = currentStation - 1;
@@ -50,12 +57,12 @@ public class Radio {
 
     public void upVolume() {
 
-        if (currentVolume < 10) {
+        if (currentVolume < 100) {
             currentVolume = currentVolume + 1;
             return;
         }
 
-        this.currentVolume = 10;
+        this.currentVolume = 100;
     }
 
     public void downVolume() {
